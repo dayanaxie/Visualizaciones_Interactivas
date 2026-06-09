@@ -1,5 +1,5 @@
 
-# Visualizaciones_Interactivas: Análisis Exploratorio del Futuro del Trabajo en la Era de la IA
+# Visualizaciones_Interactivas
 
 ### Curso
 Visualización de Información (IC8056)
@@ -37,7 +37,7 @@ Visualizaciones_Interactivas/
 
 ### Dirección de la Página Principal
 
-Las visualizaciones interactivas se encuentran en la siguiente dirección: []()
+Las visualizaciones interactivas se encuentran en la siguiente dirección: https://dayanaxie.github.io/Visualizaciones_Interactivas/
 
 
 ---
