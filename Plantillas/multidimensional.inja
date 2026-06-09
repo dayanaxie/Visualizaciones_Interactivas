@@ -1,0 +1,366 @@
+{% set margin = obj("top", 20, "right", 240, "bottom", 60, "left", 60) %}
+{% set width = 900 - margin.left - margin.right %}
+{% set height = 500 - margin.top - margin.bottom %}
+
+<svg
+  width="{{ width + margin.left + margin.right }}"
+  height="{{ height + margin.top + margin.bottom }}"
+  viewBox="0 0 {{ width + margin.left + margin.right }} {{ height + margin.top + margin.bottom }}"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:v="https://odviz.org/1.0/">
+
+  <metadata>
+
+    <v:table
+      name="automation_salary_scatter"
+      description="Relación entre riesgo de automatización, cambio salarial, volatilidad salarial, industria y rol del puesto"
+      visualization="chart"
+      version="1.0"
+      language="es"
+      columns="id,automation_risk_percent,salary_change_percent,wage_volatility_index,industry,job_role"
+      primaryKey="id">
+
+      <v:columns>
+
+        <v:column
+          name="id"
+          type="string"
+          description="Identificador único del registro"
+          required="true"/>
+
+        <v:column
+          name="automation_risk_percent"
+          type="decimal"
+          description="Porcentaje de riesgo de automatización"
+          unit="percent"
+          min="0"
+          max="100"
+          required="true"/>
+
+        <v:column
+          name="salary_change_percent"
+          type="decimal"
+          description="Cambio salarial porcentual"
+          unit="percent"
+          min="-50"
+          max="50"
+          required="true"/>
+
+        <v:column
+          name="wage_volatility_index"
+          type="decimal"
+          description="Índice de volatilidad salarial utilizado para el tamaño de la burbuja"
+          min="0"
+          max="100"
+          required="true"/>
+
+        <v:column
+          name="industry"
+          type="string"
+          description="Industria del puesto"
+          enumeration="Education,Energy,Finance,Healthcare,Manufacturing,Retail,Technology,Transportation"
+          required="true"/>
+
+        <v:column
+          name="job_role"
+          type="string"
+          description="Rol del puesto utilizado para definir la opacidad"
+          enumeration="Analyst,Manager,Engineer,Technician,Clerk"
+          required="true"/>
+
+      </v:columns>
+
+      {# No se utiliza loop.index ni loop.index0.
+         El identificador se construye con los valores del registro. #}
+      {% for d in data %}
+      <v:row
+        id="row-{{ d.industry }}-{{ d.job_role }}-{{ d.automation_risk_percent }}-{{ d.salary_change_percent }}-{{ d.wage_volatility_index }}"
+        hrefs="point-{{ d.industry }}-{{ d.job_role }}-{{ d.automation_risk_percent }}-{{ d.salary_change_percent }}-{{ d.wage_volatility_index }}">row-{{ d.industry }}-{{ d.job_role }}-{{ d.automation_risk_percent }}-{{ d.salary_change_percent }}-{{ d.wage_volatility_index }},{{ d.automation_risk_percent }},{{ d.salary_change_percent }},{{ d.wage_volatility_index }},{{ d.industry }},{{ d.job_role }}</v:row>
+      {% endfor %}
+
+    </v:table>
+
+  </metadata>
+
+  {# Fondo blanco #}
+  <rect
+    x="0"
+    y="0"
+    width="{{ width + margin.left + margin.right }}"
+    height="{{ height + margin.top + margin.bottom }}"
+    fill="white">
+  </rect>
+
+  <style>
+    .legend-text {
+      font-family: sans-serif;
+      font-size: 12px;
+      fill: #333;
+    }
+
+    .legend-title {
+      font-family: sans-serif;
+      font-size: 13px;
+      font-weight: bold;
+      fill: #333;
+    }
+
+    .axis-title {
+      font-family: sans-serif;
+      font-size: 13px;
+      fill: #333;
+    }
+  </style>
+
+  <g transform="translate({{ margin.left }},{{ margin.top }})">
+
+    {# Fondo del área de trazado #}
+    <rect
+      x="0"
+      y="0"
+      width="{{ width }}"
+      height="{{ height }}"
+      fill="#EBEBEB">
+    </rect>
+
+    {# Eje X: automation_risk_percent #}
+    {% set x = scaleLinear()
+          | domain(0, 100)
+          | range(0, width) %}
+
+    <g transform="translate(0, {{ height }})">
+      {{ call(axisBottom(x) | tickCount(6)) }}
+    </g>
+
+    {# Eje Y: salary_change_percent #}
+    {% set y = scaleLinear()
+          | domain(-50, 50)
+          | range(height, 0) %}
+
+    {{ call(axisLeft(y) | tickCount(6)) }}
+
+    {# Título del eje X #}
+    <text
+      text-anchor="middle"
+      x="{{ width / 2 }}"
+      y="{{ height + 45 }}"
+      class="axis-title">
+      Riesgo de automatización (%)
+    </text>
+
+    {# Título del eje Y #}
+    <text
+      text-anchor="middle"
+      transform="rotate(-90)"
+      x="{{ 0 - height / 2 }}"
+      y="-40"
+      class="axis-title">
+      Cambio salarial (%)
+    </text>
+
+    {# Escala de tamaño: wage_volatility_index #}
+    {% set size = scaleLinear()
+          | domain(0, 100)
+          | range(4, 14) %}
+
+    {# Escala de color: industry #}
+    {% set color = scaleOrdinal()
+          | domain([
+              "Education",
+              "Energy",
+              "Finance",
+              "Healthcare",
+              "Manufacturing",
+              "Retail",
+              "Technology",
+              "Transportation"
+            ])
+          | range([
+              "#F8766D",
+              "#A3A500",
+              "#00BF7D",
+              "#00B0F6",
+              "#E76BF3",
+              "#FF9F1C",
+              "#4D908E",
+              "#577590"
+            ]) %}
+
+    {# Escala de opacidad: job_role #}
+    {% set opacity = scaleOrdinal()
+          | domain([
+              "Analyst",
+              "Manager",
+              "Engineer",
+              "Technician",
+              "Clerk"
+            ])
+          | range([
+              0.35,
+              0.5,
+              0.65,
+              0.8,
+              1.0
+            ]) %}
+
+    <g>
+      {% for d in data %}
+      <circle
+        id="point-{{ d.industry }}-{{ d.job_role }}-{{ d.automation_risk_percent }}-{{ d.salary_change_percent }}-{{ d.wage_volatility_index }}"
+        href="#row-{{ d.industry }}-{{ d.job_role }}-{{ d.automation_risk_percent }}-{{ d.salary_change_percent }}-{{ d.wage_volatility_index }}"
+        cx="{{ scale(x, d.automation_risk_percent) }}"
+        cy="{{ scale(y, d.salary_change_percent) }}"
+        r="{{ scale(size, d.wage_volatility_index) }}"
+        fill="{{ scale(color, d.industry) }}"
+        fill-opacity="{{ scale(opacity, d.job_role) }}">
+      </circle>
+      {% endfor %}
+    </g>
+
+    {# ==========================================================
+       Leyenda de tamaño
+       ========================================================== #}
+    <text
+      x="{{ width + 30 }}"
+      y="20"
+      class="legend-title">
+      Volatilidad
+    </text>
+
+    <circle
+      cx="{{ width + 55 }}"
+      cy="50"
+      r="{{ scale(size, 20) }}"
+      fill="#888888"
+      fill-opacity="0.8">
+    </circle>
+
+    <text
+      x="{{ width + 85 }}"
+      y="54"
+      class="legend-text">
+      20
+    </text>
+
+    <circle
+      cx="{{ width + 55 }}"
+      cy="90"
+      r="{{ scale(size, 50) }}"
+      fill="#888888"
+      fill-opacity="0.8">
+    </circle>
+
+    <text
+      x="{{ width + 85 }}"
+      y="94"
+      class="legend-text">
+      50
+    </text>
+
+    <circle
+      cx="{{ width + 55 }}"
+      cy="140"
+      r="{{ scale(size, 80) }}"
+      fill="#888888"
+      fill-opacity="0.8">
+    </circle>
+
+    <text
+      x="{{ width + 85 }}"
+      y="144"
+      class="legend-text">
+      80
+    </text>
+
+    {# ==========================================================
+       Leyenda de color
+       ========================================================== #}
+    <text
+      x="{{ width + 30 }}"
+      y="190"
+      class="legend-title">
+      Industria
+    </text>
+
+    <circle cx="{{ width + 40 }}" cy="215" r="6" fill="#F8766D"></circle>
+    <text x="{{ width + 55 }}" y="219" class="legend-text">Education</text>
+
+    <circle cx="{{ width + 40 }}" cy="235" r="6" fill="#A3A500"></circle>
+    <text x="{{ width + 55 }}" y="239" class="legend-text">Energy</text>
+
+    <circle cx="{{ width + 40 }}" cy="255" r="6" fill="#00BF7D"></circle>
+    <text x="{{ width + 55 }}" y="259" class="legend-text">Finance</text>
+
+    <circle cx="{{ width + 40 }}" cy="275" r="6" fill="#00B0F6"></circle>
+    <text x="{{ width + 55 }}" y="279" class="legend-text">Healthcare</text>
+
+    <circle cx="{{ width + 40 }}" cy="295" r="6" fill="#E76BF3"></circle>
+    <text x="{{ width + 55 }}" y="299" class="legend-text">Manufacturing</text>
+
+    <circle cx="{{ width + 40 }}" cy="315" r="6" fill="#FF9F1C"></circle>
+    <text x="{{ width + 55 }}" y="319" class="legend-text">Retail</text>
+
+    <circle cx="{{ width + 40 }}" cy="335" r="6" fill="#4D908E"></circle>
+    <text x="{{ width + 55 }}" y="339" class="legend-text">Technology</text>
+
+    <circle cx="{{ width + 40 }}" cy="355" r="6" fill="#577590"></circle>
+    <text x="{{ width + 55 }}" y="359" class="legend-text">Transportation</text>
+
+    {# ==========================================================
+       Leyenda de opacidad
+       ========================================================== #}
+    <text
+      x="{{ width + 30 }}"
+      y="390"
+      class="legend-title">
+      Rol del puesto
+    </text>
+
+    <circle
+      cx="{{ width + 40 }}"
+      cy="415"
+      r="6"
+      fill="#666666"
+      fill-opacity="0.35">
+    </circle>
+    <text x="{{ width + 55 }}" y="419" class="legend-text">Analyst</text>
+
+    <circle
+      cx="{{ width + 40 }}"
+      cy="435"
+      r="6"
+      fill="#666666"
+      fill-opacity="0.5">
+    </circle>
+    <text x="{{ width + 55 }}" y="439" class="legend-text">Manager</text>
+
+    <circle
+      cx="{{ width + 40 }}"
+      cy="455"
+      r="6"
+      fill="#666666"
+      fill-opacity="0.65">
+    </circle>
+    <text x="{{ width + 55 }}" y="459" class="legend-text">Engineer</text>
+
+    <circle
+      cx="{{ width + 140 }}"
+      cy="415"
+      r="6"
+      fill="#666666"
+      fill-opacity="0.8">
+    </circle>
+    <text x="{{ width + 155 }}" y="419" class="legend-text">Technician</text>
+
+    <circle
+      cx="{{ width + 140 }}"
+      cy="435"
+      r="6"
+      fill="#666666"
+      fill-opacity="1.0">
+    </circle>
+    <text x="{{ width + 155 }}" y="439" class="legend-text">Clerk</text>
+
+  </g>
+
+</svg>

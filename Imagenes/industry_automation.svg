@@ -1,0 +1,512 @@
+
+
+<svg
+  width="700"
+  height="400"
+  viewBox="0 0 700 400"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:v="https://odviz.org/1.0/">
+
+  <metadata>
+    <v:table
+      name="automation_risk_by_industry"
+      description="Cantidad de registros por industria y categoría de riesgo de automatización"
+      visualization="chart"
+      version="1.0"
+      language="en"
+      unit="count"
+      columns="id,industry,automation_risk_category,count"
+      primaryKey="id">
+
+      <v:columns>
+        <v:column
+          name="id"
+          type="string"
+          description="Identificador único del registro"
+          required="true"/>
+
+        <v:column
+          name="industry"
+          type="string"
+          description="Industria evaluada"
+          enumeration="Education,Energy,Finance,Healthcare,Manufacturing,Retail,Technology,Transportation"
+          required="true"/>
+
+        <v:column
+          name="automation_risk_category"
+          type="string"
+          description="Categoría del riesgo de automatización"
+          enumeration="Low,Medium,High"
+          required="true"/>
+
+        <v:column
+          name="count"
+          type="integer"
+          description="Cantidad de registros"
+          min="0"
+          required="true"/>
+      </v:columns>
+
+      <v:row
+        id="risk-row-Education-High"
+        hrefs="risk-bar-Education-High">Education-High,Education,High,512</v:row>
+      <v:row
+        id="risk-row-Education-Low"
+        hrefs="risk-bar-Education-Low">Education-Low,Education,Low,499</v:row>
+      <v:row
+        id="risk-row-Education-Medium"
+        hrefs="risk-bar-Education-Medium">Education-Medium,Education,Medium,803</v:row>
+      <v:row
+        id="risk-row-Energy-High"
+        hrefs="risk-bar-Energy-High">Energy-High,Energy,High,617</v:row>
+      <v:row
+        id="risk-row-Energy-Low"
+        hrefs="risk-bar-Energy-Low">Energy-Low,Energy,Low,499</v:row>
+      <v:row
+        id="risk-row-Energy-Medium"
+        hrefs="risk-bar-Energy-Medium">Energy-Medium,Energy,Medium,764</v:row>
+      <v:row
+        id="risk-row-Finance-High"
+        hrefs="risk-bar-Finance-High">Finance-High,Finance,High,602</v:row>
+      <v:row
+        id="risk-row-Finance-Low"
+        hrefs="risk-bar-Finance-Low">Finance-Low,Finance,Low,533</v:row>
+      <v:row
+        id="risk-row-Finance-Medium"
+        hrefs="risk-bar-Finance-Medium">Finance-Medium,Finance,Medium,807</v:row>
+      <v:row
+        id="risk-row-Healthcare-High"
+        hrefs="risk-bar-Healthcare-High">Healthcare-High,Healthcare,High,554</v:row>
+      <v:row
+        id="risk-row-Healthcare-Low"
+        hrefs="risk-bar-Healthcare-Low">Healthcare-Low,Healthcare,Low,508</v:row>
+      <v:row
+        id="risk-row-Healthcare-Medium"
+        hrefs="risk-bar-Healthcare-Medium">Healthcare-Medium,Healthcare,Medium,814</v:row>
+      <v:row
+        id="risk-row-Manufacturing-High"
+        hrefs="risk-bar-Manufacturing-High">Manufacturing-High,Manufacturing,High,569</v:row>
+      <v:row
+        id="risk-row-Manufacturing-Low"
+        hrefs="risk-bar-Manufacturing-Low">Manufacturing-Low,Manufacturing,Low,474</v:row>
+      <v:row
+        id="risk-row-Manufacturing-Medium"
+        hrefs="risk-bar-Manufacturing-Medium">Manufacturing-Medium,Manufacturing,Medium,779</v:row>
+      <v:row
+        id="risk-row-Retail-High"
+        hrefs="risk-bar-Retail-High">Retail-High,Retail,High,538</v:row>
+      <v:row
+        id="risk-row-Retail-Low"
+        hrefs="risk-bar-Retail-Low">Retail-Low,Retail,Low,480</v:row>
+      <v:row
+        id="risk-row-Retail-Medium"
+        hrefs="risk-bar-Retail-Medium">Retail-Medium,Retail,Medium,847</v:row>
+      <v:row
+        id="risk-row-Technology-High"
+        hrefs="risk-bar-Technology-High">Technology-High,Technology,High,547</v:row>
+      <v:row
+        id="risk-row-Technology-Low"
+        hrefs="risk-bar-Technology-Low">Technology-Low,Technology,Low,523</v:row>
+      <v:row
+        id="risk-row-Technology-Medium"
+        hrefs="risk-bar-Technology-Medium">Technology-Medium,Technology,Medium,829</v:row>
+      <v:row
+        id="risk-row-Transportation-High"
+        hrefs="risk-bar-Transportation-High">Transportation-High,Transportation,High,557</v:row>
+      <v:row
+        id="risk-row-Transportation-Low"
+        hrefs="risk-bar-Transportation-Low">Transportation-Low,Transportation,Low,524</v:row>
+      <v:row
+        id="risk-row-Transportation-Medium"
+        hrefs="risk-bar-Transportation-Medium">Transportation-Medium,Transportation,Medium,821</v:row>
+
+    </v:table>
+  </metadata>
+
+  <rect
+    x="0"
+    y="0"
+    width="700"
+    height="400"
+    fill="white">
+  </rect>
+
+  <style>
+    .tick-label {
+      font-family: sans-serif;
+      fill: #333;
+    }
+
+    .axis-line,
+    .tick-line {
+      stroke: #666;
+    }
+
+    .legend-text {
+      font-family: sans-serif;
+      font-size: 12px;
+      fill: #333;
+    }
+  </style>
+
+  <g transform="translate(60,30)">
+
+
+
+
+
+    <g transform="translate(0,280)">
+      <!-- axis orientation=bottom range=[0,520] ticks=8 -->
+  <g class="axis axis-bottom" transform="translate(0, 0)">
+    <line class="axis-line" x1="0" y1="0" x2="520" y2="0" stroke="currentColor" stroke-width="1"/>
+    <g class="tick" transform="translate(6.50, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="start" dominant-baseline="central" transform="rotate(45, 0, 9)" >Education</text>
+    </g>
+    <g class="tick" transform="translate(71.50, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="start" dominant-baseline="central" transform="rotate(45, 0, 9)" >Energy</text>
+    </g>
+    <g class="tick" transform="translate(136.50, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="start" dominant-baseline="central" transform="rotate(45, 0, 9)" >Finance</text>
+    </g>
+    <g class="tick" transform="translate(201.50, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="start" dominant-baseline="central" transform="rotate(45, 0, 9)" >Healthcare</text>
+    </g>
+    <g class="tick" transform="translate(266.50, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="start" dominant-baseline="central" transform="rotate(45, 0, 9)" >Manufacturing</text>
+    </g>
+    <g class="tick" transform="translate(331.50, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="start" dominant-baseline="central" transform="rotate(45, 0, 9)" >Retail</text>
+    </g>
+    <g class="tick" transform="translate(396.50, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="start" dominant-baseline="central" transform="rotate(45, 0, 9)" >Technology</text>
+    </g>
+    <g class="tick" transform="translate(461.50, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="start" dominant-baseline="central" transform="rotate(45, 0, 9)" >Transportation</text>
+    </g>
+  </g>
+
+    </g>
+
+
+
+    <g>
+      <!-- axis orientation=left range=[280,0] ticks=9 -->
+  <g class="axis axis-left" transform="translate(0, 0)">
+    <line class="axis-line" x1="0" y1="280" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+    <g class="tick" transform="translate(0, 280)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >0</text>
+    </g>
+    <g class="tick" transform="translate(0, 245)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >100</text>
+    </g>
+    <g class="tick" transform="translate(0, 210)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >200</text>
+    </g>
+    <g class="tick" transform="translate(0, 175)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >300</text>
+    </g>
+    <g class="tick" transform="translate(0, 140)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >400</text>
+    </g>
+    <g class="tick" transform="translate(0, 105)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >500</text>
+    </g>
+    <g class="tick" transform="translate(0, 70)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >600</text>
+    </g>
+    <g class="tick" transform="translate(0, 35)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >700</text>
+    </g>
+    <g class="tick" transform="translate(0, 0)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >800</text>
+    </g>
+  </g>
+
+    </g>
+
+
+    <rect
+      id="risk-bar-Education-High"
+      href="#risk-row-Education-High"
+      x="41.599999999999994"
+      y="100.8"
+      width="16.466666666666665"
+      height="179.2"
+      fill="#ff6b6b">
+    </rect>
+    <rect
+      id="risk-bar-Education-Low"
+      href="#risk-row-Education-Low"
+      x="6.933333333333334"
+      y="105.35"
+      width="16.466666666666665"
+      height="174.65"
+      fill="#69b3a2">
+    </rect>
+    <rect
+      id="risk-bar-Education-Medium"
+      href="#risk-row-Education-Medium"
+      x="24.266666666666666"
+      y="-1.0499999999999776"
+      width="16.466666666666665"
+      height="281.04999999999995"
+      fill="#ffcc66">
+    </rect>
+    <rect
+      id="risk-bar-Energy-High"
+      href="#risk-row-Energy-High"
+      x="106.6"
+      y="64.05"
+      width="16.466666666666665"
+      height="215.95"
+      fill="#ff6b6b">
+    </rect>
+    <rect
+      id="risk-bar-Energy-Low"
+      href="#risk-row-Energy-Low"
+      x="71.93333333333334"
+      y="105.35"
+      width="16.466666666666665"
+      height="174.65"
+      fill="#69b3a2">
+    </rect>
+    <rect
+      id="risk-bar-Energy-Medium"
+      href="#risk-row-Energy-Medium"
+      x="89.26666666666667"
+      y="12.600000000000012"
+      width="16.466666666666665"
+      height="267.4"
+      fill="#ffcc66">
+    </rect>
+    <rect
+      id="risk-bar-Finance-High"
+      href="#risk-row-Finance-High"
+      x="171.6"
+      y="69.30000000000001"
+      width="16.466666666666665"
+      height="210.7"
+      fill="#ff6b6b">
+    </rect>
+    <rect
+      id="risk-bar-Finance-Low"
+      href="#risk-row-Finance-Low"
+      x="136.93333333333334"
+      y="93.45"
+      width="16.466666666666665"
+      height="186.55"
+      fill="#69b3a2">
+    </rect>
+    <rect
+      id="risk-bar-Finance-Medium"
+      href="#risk-row-Finance-Medium"
+      x="154.26666666666665"
+      y="-2.45000000000001"
+      width="16.466666666666665"
+      height="282.45"
+      fill="#ffcc66">
+    </rect>
+    <rect
+      id="risk-bar-Healthcare-High"
+      href="#risk-row-Healthcare-High"
+      x="236.6"
+      y="86.1"
+      width="16.466666666666665"
+      height="193.9"
+      fill="#ff6b6b">
+    </rect>
+    <rect
+      id="risk-bar-Healthcare-Low"
+      href="#risk-row-Healthcare-Low"
+      x="201.93333333333334"
+      y="102.2"
+      width="16.466666666666665"
+      height="177.8"
+      fill="#69b3a2">
+    </rect>
+    <rect
+      id="risk-bar-Healthcare-Medium"
+      href="#risk-row-Healthcare-Medium"
+      x="219.26666666666665"
+      y="-4.90000000000002"
+      width="16.466666666666665"
+      height="284.90000000000003"
+      fill="#ffcc66">
+    </rect>
+    <rect
+      id="risk-bar-Manufacturing-High"
+      href="#risk-row-Manufacturing-High"
+      x="301.6"
+      y="80.84999999999998"
+      width="16.466666666666665"
+      height="199.15000000000003"
+      fill="#ff6b6b">
+    </rect>
+    <rect
+      id="risk-bar-Manufacturing-Low"
+      href="#risk-row-Manufacturing-Low"
+      x="266.93333333333334"
+      y="114.1"
+      width="16.466666666666665"
+      height="165.9"
+      fill="#69b3a2">
+    </rect>
+    <rect
+      id="risk-bar-Manufacturing-Medium"
+      href="#risk-row-Manufacturing-Medium"
+      x="284.26666666666665"
+      y="7.349999999999999"
+      width="16.466666666666665"
+      height="272.65"
+      fill="#ffcc66">
+    </rect>
+    <rect
+      id="risk-bar-Retail-High"
+      href="#risk-row-Retail-High"
+      x="366.6"
+      y="91.7"
+      width="16.466666666666665"
+      height="188.3"
+      fill="#ff6b6b">
+    </rect>
+    <rect
+      id="risk-bar-Retail-Low"
+      href="#risk-row-Retail-Low"
+      x="331.93333333333334"
+      y="112.0"
+      width="16.466666666666665"
+      height="168.0"
+      fill="#69b3a2">
+    </rect>
+    <rect
+      id="risk-bar-Retail-Medium"
+      href="#risk-row-Retail-Medium"
+      x="349.26666666666665"
+      y="-16.450000000000024"
+      width="16.466666666666665"
+      height="296.45000000000005"
+      fill="#ffcc66">
+    </rect>
+    <rect
+      id="risk-bar-Technology-High"
+      href="#risk-row-Technology-High"
+      x="431.6"
+      y="88.55000000000001"
+      width="16.466666666666665"
+      height="191.45"
+      fill="#ff6b6b">
+    </rect>
+    <rect
+      id="risk-bar-Technology-Low"
+      href="#risk-row-Technology-Low"
+      x="396.93333333333334"
+      y="96.94999999999999"
+      width="16.466666666666665"
+      height="183.05"
+      fill="#69b3a2">
+    </rect>
+    <rect
+      id="risk-bar-Technology-Medium"
+      href="#risk-row-Technology-Medium"
+      x="414.26666666666665"
+      y="-10.14999999999997"
+      width="16.466666666666665"
+      height="290.15"
+      fill="#ffcc66">
+    </rect>
+    <rect
+      id="risk-bar-Transportation-High"
+      href="#risk-row-Transportation-High"
+      x="496.6"
+      y="85.04999999999998"
+      width="16.466666666666665"
+      height="194.95000000000002"
+      fill="#ff6b6b">
+    </rect>
+    <rect
+      id="risk-bar-Transportation-Low"
+      href="#risk-row-Transportation-Low"
+      x="461.93333333333334"
+      y="96.6"
+      width="16.466666666666665"
+      height="183.4"
+      fill="#69b3a2">
+    </rect>
+    <rect
+      id="risk-bar-Transportation-Medium"
+      href="#risk-row-Transportation-Medium"
+      x="479.26666666666665"
+      y="-7.35000000000003"
+      width="16.466666666666665"
+      height="287.35"
+      fill="#ffcc66">
+    </rect>
+
+    <g aria-label="Legend">
+
+      <rect
+        x="540"
+        y="0"
+        width="12"
+        height="12"
+        fill="#69b3a2">
+      </rect>
+
+      <text
+        x="560"
+        y="10"
+        class="legend-text">
+        Low
+      </text>
+
+      <rect
+        x="540"
+        y="20"
+        width="12"
+        height="12"
+        fill="#ffcc66">
+      </rect>
+
+      <text
+        x="560"
+        y="30"
+        class="legend-text">
+        Medium
+      </text>
+
+      <rect
+        x="540"
+        y="40"
+        width="12"
+        height="12"
+        fill="#ff6b6b">
+      </rect>
+
+      <text
+        x="560"
+        y="50"
+        class="legend-text">
+        High
+      </text>
+
+    </g>
+
+  </g>
+</svg>

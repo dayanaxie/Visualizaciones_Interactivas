@@ -1,0 +1,301 @@
+{% set width = 700 %}
+{% set height = 420 %}
+
+{% set xScale = scaleLinear()
+    | domain(0, 75)
+    | range(60, width - 60) %}
+
+{% set yScale = scaleLinear()
+    | domain(0, 0.04)
+    | range(height - 50, 50) %}
+
+{# Forma de las líneas #}
+{% set lineShp = shapeLine()
+    | x("x")
+    | y("y")
+    | curve("smooth") %}
+
+{% set lowData = [] %}
+{% set mediumData = [] %}
+{% set highData = [] %}
+
+{% for group in data %}
+
+  {% set lowZip = zip_obj(["xValue", "yValue"], group.Low.x, group.Low.y) %}
+  {% for item in lowZip %}
+    {% set lowData = lowData
+      | append(obj(
+          "x", scale(xScale, item.xValue),
+          "y", scale(yScale, item.yValue)
+        )) %}
+  {% endfor %}
+
+  {% set mediumZip = zip_obj(["xValue", "yValue"], group.Medium.x, group.Medium.y) %}
+  {% for item in mediumZip %}
+    {% set mediumData = mediumData
+      | append(obj(
+          "x", scale(xScale, item.xValue),
+          "y", scale(yScale, item.yValue)
+        )) %}
+  {% endfor %}
+
+  {% set highZip = zip_obj(["xValue", "yValue"], group.High.x, group.High.y) %}
+  {% for item in highZip %}
+    {% set highData = highData
+      | append(obj(
+          "x", scale(xScale, item.xValue),
+          "y", scale(yScale, item.yValue)
+        )) %}
+  {% endfor %}
+
+{% endfor %}
+
+<svg
+  width="{{ width }}"
+  height="{{ height }}"
+  viewBox="0 0 {{ width }} {{ height }}"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:v="https://odviz.org/1.0/">
+
+  <metadata>
+
+    <v:table
+      name="density_points"
+      description="Valores de urgencia de recapacitación y densidad para las categorías Low, Medium y High"
+      visualization="chart"
+      version="1.0"
+      language="es"
+      columns="id,category,urgency,density"
+      primaryKey="id">
+
+      <v:columns>
+        <v:column
+          name="id"
+          type="string"
+          description="Identificador único del punto"
+          required="true"/>
+
+        <v:column
+          name="category"
+          type="string"
+          description="Categoría de riesgo de automatización"
+          enumeration="Low,Medium,High"
+          required="true"/>
+
+        <v:column
+          name="urgency"
+          type="decimal"
+          description="Valor de urgencia de recapacitación en el eje X"
+          required="true"/>
+
+        <v:column
+          name="density"
+          type="decimal"
+          description="Valor de densidad correspondiente en el eje Y"
+          min="0"
+          required="true"/>
+      </v:columns>
+
+      {% for group in data %}
+
+        {# Filas Low: item.xValue = urgencia; item.yValue = densidad #}
+        {% set lowTableData = zip_obj(["xValue", "yValue"], group.Low.x, group.Low.y) %}
+        {% for item in lowTableData %}
+        <v:row
+          id="row-low-{{ item.xValue }}"
+          hrefs="point-low-{{ item.xValue }}">row-low-{{ item.xValue }},Low,{{ item.xValue }},{{ item.yValue }}</v:row>
+        {% endfor %}
+
+        {# Filas Medium #}
+        {% set mediumTableData = zip_obj(["xValue", "yValue"], group.Medium.x, group.Medium.y) %}
+        {% for item in mediumTableData %}
+        <v:row
+          id="row-medium-{{ item.xValue }}"
+          hrefs="point-medium-{{ item.xValue }}">row-medium-{{ item.xValue }},Medium,{{ item.xValue }},{{ item.yValue }}</v:row>
+        {% endfor %}
+
+        {# Filas High #}
+        {% set highTableData = zip_obj(["xValue", "yValue"], group.High.x, group.High.y) %}
+        {% for item in highTableData %}
+        <v:row
+          id="row-high-{{ item.xValue }}"
+          hrefs="point-high-{{ item.xValue }}">row-high-{{ item.xValue }},High,{{ item.xValue }},{{ item.yValue }}</v:row>
+        {% endfor %}
+
+      {% endfor %}
+
+    </v:table>
+
+  </metadata>
+
+  {# Fondo blanco #}
+  <rect
+    x="0"
+    y="0"
+    width="{{ width }}"
+    height="{{ height }}"
+    fill="white">
+  </rect>
+
+  <style>
+    .tick-label {
+      font-family: sans-serif;
+      fill: #333;
+    }
+
+    .axis-line,
+    .tick-line {
+      stroke: #666;
+    }
+
+    .legend-text {
+      font-family: sans-serif;
+      font-size: 12px;
+      fill: #333;
+    }
+
+    .axis-title {
+      font-family: sans-serif;
+      font-size: 13px;
+      fill: #333;
+    }
+
+    .data-point {
+      stroke: white;
+      stroke-width: 0.5;
+    }
+  </style>
+
+  {# Eje X #}
+  <g transform="translate(0, {{ height - 50 }})">
+    {{ call(axisBottom(xScale) | tickCount(8)) }}
+  </g>
+
+  {# Eje Y #}
+  <line
+    x1="60"
+    y1="{{ scale(yScale, 0) }}"
+    x2="60"
+    y2="{{ scale(yScale, 0.035) }}"
+    stroke="#666">
+  </line>
+
+  <line x1="54" y1="{{ scale(yScale, 0) }}" x2="60" y2="{{ scale(yScale, 0) }}" stroke="#666"></line>
+  <text x="50" y="{{ scale(yScale, 0) + 4 }}" text-anchor="end" font-family="sans-serif" font-size="12" fill="#333">0.000</text>
+
+  <line x1="54" y1="{{ scale(yScale, 0.005) }}" x2="60" y2="{{ scale(yScale, 0.005) }}" stroke="#666"></line>
+  <text x="50" y="{{ scale(yScale, 0.005) + 4 }}" text-anchor="end" font-family="sans-serif" font-size="12" fill="#333">0.005</text>
+
+  <line x1="54" y1="{{ scale(yScale, 0.010) }}" x2="60" y2="{{ scale(yScale, 0.010) }}" stroke="#666"></line>
+  <text x="50" y="{{ scale(yScale, 0.010) + 4 }}" text-anchor="end" font-family="sans-serif" font-size="12" fill="#333">0.010</text>
+
+  <line x1="54" y1="{{ scale(yScale, 0.015) }}" x2="60" y2="{{ scale(yScale, 0.015) }}" stroke="#666"></line>
+  <text x="50" y="{{ scale(yScale, 0.015) + 4 }}" text-anchor="end" font-family="sans-serif" font-size="12" fill="#333">0.015</text>
+
+  <line x1="54" y1="{{ scale(yScale, 0.020) }}" x2="60" y2="{{ scale(yScale, 0.020) }}" stroke="#666"></line>
+  <text x="50" y="{{ scale(yScale, 0.020) + 4 }}" text-anchor="end" font-family="sans-serif" font-size="12" fill="#333">0.020</text>
+
+  <line x1="54" y1="{{ scale(yScale, 0.025) }}" x2="60" y2="{{ scale(yScale, 0.025) }}" stroke="#666"></line>
+  <text x="50" y="{{ scale(yScale, 0.025) + 4 }}" text-anchor="end" font-family="sans-serif" font-size="12" fill="#333">0.025</text>
+
+  <line x1="54" y1="{{ scale(yScale, 0.030) }}" x2="60" y2="{{ scale(yScale, 0.030) }}" stroke="#666"></line>
+  <text x="50" y="{{ scale(yScale, 0.030) + 4 }}" text-anchor="end" font-family="sans-serif" font-size="12" fill="#333">0.030</text>
+
+  <line x1="54" y1="{{ scale(yScale, 0.035) }}" x2="60" y2="{{ scale(yScale, 0.035) }}" stroke="#666"></line>
+  <text x="50" y="{{ scale(yScale, 0.035) + 4 }}" text-anchor="end" font-family="sans-serif" font-size="12" fill="#333">0.035</text>
+
+  {# Líneas de densidad #}
+  <path
+    d="{{ line(lineShp, lowData) }}"
+    stroke="#69b3a2"
+    stroke-width="2"
+    fill="none">
+  </path>
+
+  <path
+    d="{{ line(lineShp, mediumData) }}"
+    stroke="#ffcc66"
+    stroke-width="2"
+    fill="none">
+  </path>
+
+  <path
+    d="{{ line(lineShp, highData) }}"
+    stroke="#ff6b6b"
+    stroke-width="2"
+    fill="none">
+  </path>
+
+  {% for group in data %}
+
+    {% set lowPoints = zip_obj(["xValue", "yValue"], group.Low.x, group.Low.y) %}
+    {% for item in lowPoints %}
+    <circle
+      id="point-low-{{ item.xValue }}"
+      href="#row-low-{{ item.xValue }}"
+      class="data-point"
+      cx="{{ scale(xScale, item.xValue) }}"
+      cy="{{ scale(yScale, item.yValue) }}"
+      r="1.8"
+      fill="#69b3a2">
+    </circle>
+    {% endfor %}
+
+    {% set mediumPoints = zip_obj(["xValue", "yValue"], group.Medium.x, group.Medium.y) %}
+    {% for item in mediumPoints %}
+    <circle
+      id="point-medium-{{ item.xValue }}"
+      href="#row-medium-{{ item.xValue }}"
+      class="data-point"
+      cx="{{ scale(xScale, item.xValue) }}"
+      cy="{{ scale(yScale, item.yValue) }}"
+      r="1.8"
+      fill="#ffcc66">
+    </circle>
+    {% endfor %}
+
+    {% set highPoints = zip_obj(["xValue", "yValue"], group.High.x, group.High.y) %}
+    {% for item in highPoints %}
+    <circle
+      id="point-high-{{ item.xValue }}"
+      href="#row-high-{{ item.xValue }}"
+      class="data-point"
+      cx="{{ scale(xScale, item.xValue) }}"
+      cy="{{ scale(yScale, item.yValue) }}"
+      r="1.8"
+      fill="#ff6b6b">
+    </circle>
+    {% endfor %}
+
+  {% endfor %}
+
+  {# Título del eje X #}
+  <text
+    x="{{ width / 2 }}"
+    y="{{ height - 10 }}"
+    text-anchor="middle"
+    class="axis-title">
+    Urgencia de recapacitación
+  </text>
+
+  {# Título del eje Y #}
+  <text
+    x="-{{ height / 2 }}"
+    y="20"
+    transform="rotate(-90)"
+    text-anchor="middle"
+    class="axis-title">
+    Density
+  </text>
+
+  {# Leyenda #}
+  <rect x="{{ width - 130 }}" y="50" width="12" height="12" fill="#69b3a2"></rect>
+  <text x="{{ width - 110 }}" y="60" class="legend-text">Low</text>
+
+  <rect x="{{ width - 130 }}" y="70" width="12" height="12" fill="#ffcc66"></rect>
+  <text x="{{ width - 110 }}" y="80" class="legend-text">Medium</text>
+
+  <rect x="{{ width - 130 }}" y="90" width="12" height="12" fill="#ff6b6b"></rect>
+  <text x="{{ width - 110 }}" y="100" class="legend-text">High</text>
+
+</svg>
