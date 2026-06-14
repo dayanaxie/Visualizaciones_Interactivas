@@ -1,0 +1,59 @@
+
+
+<svg width="540"
+     height="420"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:v="https://odviz.org/1.0/">
+
+  <metadata>
+    <v:table name="salary_change_pie"
+             description="Distribution of salary change direction after AI adoption"
+             visualization="chart"
+             columns="id,category,count,pct,color">
+      <v:row id="slice-1" hrefs="path-1, label-1">1,Increased,4653,31.0,#69b3a2</v:row>
+      <v:row id="slice-2" hrefs="path-2, label-2">2,No Change,5764,38.4,#aaaaaa</v:row>
+      <v:row id="slice-3" hrefs="path-3, label-3">3,Decreased,4583,30.6,#ff6b6b</v:row>
+    </v:table>
+  </metadata>
+
+  <rect x="0" y="0" width="540" height="420" fill="white"/>
+
+  <style>
+    .pct-label   { font-family: sans-serif; font-size: 13px; font-weight: bold; fill: white; }
+    .legend-text { font-family: sans-serif; font-size: 12px; fill: #333; }
+    .title       { font-family: sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+  </style>
+
+  <text x="210" y="28" text-anchor="middle" class="title">
+    Distribucion del cambio salarial tras la adopcion de IA
+  </text>
+
+  <path id="path-1"
+        href="#slice-1"
+        d="M 180 195 L 180 65 A 130 130 0 0 1 300.9 242.9 Z"
+        fill="#69b3a2"/>
+
+  <path id="path-2"
+        href="#slice-2"
+        d="M 180 195 L 300.9 242.9 A 130 130 0 0 1 58 239.8 Z"
+        fill="#aaaaaa"/>
+
+  <path id="path-3"
+        href="#slice-3"
+        d="M 180 195 L 58 239.8 A 130 130 0 0 1 180 65 Z"
+        fill="#ff6b6b"/>
+
+  <text id="label-1" href="#slice-1" x="250" y="152" text-anchor="middle" class="pct-label">31.0%</text>
+  <text id="label-2" href="#slice-2" x="179" y="284" text-anchor="middle" class="pct-label">38.4%</text>
+  <text id="label-3" href="#slice-3" x="111" y="151" text-anchor="middle" class="pct-label">30.6%</text>
+
+  <rect x="370" y="150" width="14" height="14" fill="#69b3a2"/>
+  <text x="390" y="162" class="legend-text">Increased (&gt;5%)</text>
+
+  <rect x="370" y="175" width="14" height="14" fill="#aaaaaa"/>
+  <text x="390" y="187" class="legend-text">No Change</text>
+
+  <rect x="370" y="200" width="14" height="14" fill="#ff6b6b"/>
+  <text x="390" y="212" class="legend-text">Decreased (&gt;5%)</text>
+
+</svg>

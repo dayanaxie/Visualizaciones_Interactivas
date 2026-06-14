@@ -1,0 +1,213 @@
+
+
+<svg width="580"
+     height="420"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:v="https://odviz.org/1.0/">
+
+  <metadata>
+    <v:table name="automation_risk_hist"
+             description="Histogram of automation risk percentage distribution"
+             visualization="chart"
+             columns="id,bin_start,bin_end,count">
+      <v:row id="row-0" hrefs="bar-0">0,0,10,451</v:row>
+      <v:row id="row-1" hrefs="bar-1">1,10,20,1657</v:row>
+      <v:row id="row-2" hrefs="bar-2">2,20,30,1932</v:row>
+      <v:row id="row-3" hrefs="bar-3">3,30,40,2099</v:row>
+      <v:row id="row-4" hrefs="bar-4">4,40,50,2189</v:row>
+      <v:row id="row-5" hrefs="bar-5">5,50,60,2176</v:row>
+      <v:row id="row-6" hrefs="bar-6">6,60,70,2127</v:row>
+      <v:row id="row-7" hrefs="bar-7">7,70,80,1708</v:row>
+      <v:row id="row-8" hrefs="bar-8">8,80,90,447</v:row>
+      <v:row id="row-9" hrefs="bar-9">9,90,100,214</v:row>
+    </v:table>
+  </metadata>
+
+  <style>
+    .tick-label { font-family: sans-serif; fill: #333; }
+    .axis-line, .tick-line { stroke: #666; }
+    .title      { font-family: sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+    .axis-label { font-family: sans-serif; font-size: 12px; fill: #555; }
+  </style>
+
+  <text x="290.0"
+        y="22"
+        text-anchor="middle"
+        class="title">
+    Distribucion del porcentaje de riesgo de automatizacion
+  </text>
+
+  <g transform="translate(90,60)">
+
+
+    <g transform="translate(0,290)">
+      <!-- axis orientation=bottom range=[0,460] ticks=11 -->
+  <g class="axis axis-bottom" transform="translate(0, 0)">
+    <line class="axis-line" x1="0" y1="0" x2="460" y2="0" stroke="currentColor" stroke-width="1"/>
+    <g class="tick" transform="translate(0, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >0</text>
+    </g>
+    <g class="tick" transform="translate(46, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >10</text>
+    </g>
+    <g class="tick" transform="translate(92, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >20</text>
+    </g>
+    <g class="tick" transform="translate(138, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >30</text>
+    </g>
+    <g class="tick" transform="translate(184, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >40</text>
+    </g>
+    <g class="tick" transform="translate(230, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >50</text>
+    </g>
+    <g class="tick" transform="translate(276, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >60</text>
+    </g>
+    <g class="tick" transform="translate(322, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >70</text>
+    </g>
+    <g class="tick" transform="translate(368, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >80</text>
+    </g>
+    <g class="tick" transform="translate(414, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >90</text>
+    </g>
+    <g class="tick" transform="translate(460, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >100</text>
+    </g>
+  </g>
+
+    </g>
+
+    <text x="230.0"
+          y="345"
+          text-anchor="middle"
+          class="axis-label">
+      Porcentaje de riesgo de automatizacion (%)
+    </text>
+
+
+    <g> <!-- axis orientation=left range=[290,0] ticks=6 -->
+  <g class="axis axis-left" transform="translate(0, 0)">
+    <line class="axis-line" x1="0" y1="290" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+    <g class="tick" transform="translate(0, 290)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >0</text>
+    </g>
+    <g class="tick" transform="translate(0, 232)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >500</text>
+    </g>
+    <g class="tick" transform="translate(0, 174)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >1000</text>
+    </g>
+    <g class="tick" transform="translate(0, 116)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >1500</text>
+    </g>
+    <g class="tick" transform="translate(0, 58)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >2000</text>
+    </g>
+    <g class="tick" transform="translate(0, 0)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >2500</text>
+    </g>
+  </g>
+</g>
+
+    <text transform="rotate(-90)"
+          x="145.0"
+          y="-70"
+          text-anchor="middle"
+          class="axis-label">
+      Numero de empleos
+    </text>
+
+      <rect id="bar-0"
+            href="#row-0"
+            x="1.0"
+            y="237.684"
+            width="44.0"
+            height="52.316"
+            fill="#5b8cba"/>
+      <rect id="bar-1"
+            href="#row-1"
+            x="47.0"
+            y="97.78800000000001"
+            width="44.0"
+            height="192.212"
+            fill="#5b8cba"/>
+      <rect id="bar-2"
+            href="#row-2"
+            x="93.0"
+            y="65.88799999999998"
+            width="44.0"
+            height="224.11200000000002"
+            fill="#5b8cba"/>
+      <rect id="bar-3"
+            href="#row-3"
+            x="139.0"
+            y="46.51599999999999"
+            width="44.0"
+            height="243.484"
+            fill="#5b8cba"/>
+      <rect id="bar-4"
+            href="#row-4"
+            x="185.0"
+            y="36.07599999999999"
+            width="44.0"
+            height="253.924"
+            fill="#5b8cba"/>
+      <rect id="bar-5"
+            href="#row-5"
+            x="231.0"
+            y="37.584"
+            width="44.0"
+            height="252.416"
+            fill="#5b8cba"/>
+      <rect id="bar-6"
+            href="#row-6"
+            x="277.0"
+            y="43.268"
+            width="44.0"
+            height="246.732"
+            fill="#5b8cba"/>
+      <rect id="bar-7"
+            href="#row-7"
+            x="323.0"
+            y="91.87199999999999"
+            width="44.0"
+            height="198.12800000000001"
+            fill="#5b8cba"/>
+      <rect id="bar-8"
+            href="#row-8"
+            x="369.0"
+            y="238.148"
+            width="44.0"
+            height="51.852000000000004"
+            fill="#5b8cba"/>
+      <rect id="bar-9"
+            href="#row-9"
+            x="415.0"
+            y="265.176"
+            width="44.0"
+            height="24.824000000000012"
+            fill="#5b8cba"/>
+
+  </g>
+</svg>
