@@ -1,0 +1,158 @@
+
+
+<svg width="460"
+     height="420"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:v="https://odviz.org/1.0/">
+
+  <metadata>
+    <v:table name="automation_risk_bar"
+             description="Distribution of jobs by automation risk category"
+             visualization="chart"
+             columns="id,category,count">
+      <v:row id="row-0" hrefs="bar-0, label-0">0,Low,4040</v:row>
+      <v:row id="row-1" hrefs="bar-1, label-1">1,Medium,6464</v:row>
+      <v:row id="row-2" hrefs="bar-2, label-2">2,High,4496</v:row>
+    </v:table>
+  </metadata>
+
+  <style>
+    .tick-label { font-family: sans-serif; fill: #333; }
+    .axis-line, .tick-line { stroke: #666; }
+    .bar-label  { font-family: sans-serif; font-size: 12px; fill: #333; }
+    .title      { font-family: sans-serif; font-size: 14px; font-weight: bold; fill: #222; }
+    .axis-label { font-family: sans-serif; font-size: 12px; fill: #555; }
+  </style>
+
+  <text x="230.0"
+        y="22"
+        text-anchor="middle"
+        class="title">
+    Distribucion de empleos por categoria de riesgo de automatizacion
+  </text>
+
+  <text x="70"
+        y="50"
+        text-anchor="start"
+        class="axis-label">
+    Numero de empleos
+  </text>
+
+  <g transform="translate(70,80)">
+
+
+
+    <g transform="translate(0,270)">
+      <!-- axis orientation=bottom range=[0,360] ticks=3 -->
+  <g class="axis axis-bottom" transform="translate(0, 0)">
+    <line class="axis-line" x1="0" y1="0" x2="360" y2="0" stroke="currentColor" stroke-width="1"/>
+    <g class="tick" transform="translate(12, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >Low</text>
+    </g>
+    <g class="tick" transform="translate(132, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >Medium</text>
+    </g>
+    <g class="tick" transform="translate(252, 0)">
+      <line class="tick-line" x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="0" y="9" text-anchor="middle" dominant-baseline="hanging" dy="0.15em" >High</text>
+    </g>
+  </g>
+
+    </g>
+
+    <text x="180.0"
+          y="325"
+          text-anchor="middle"
+          class="axis-label">
+      Categoria de riesgo de automatizacion
+    </text>
+
+
+    <g> <!-- axis orientation=left range=[270,0] ticks=8 -->
+  <g class="axis axis-left" transform="translate(0, 0)">
+    <line class="axis-line" x1="0" y1="270" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+    <g class="tick" transform="translate(0, 270)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >0</text>
+    </g>
+    <g class="tick" transform="translate(0, 231.43)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >1000</text>
+    </g>
+    <g class="tick" transform="translate(0, 192.86)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >2000</text>
+    </g>
+    <g class="tick" transform="translate(0, 154.29)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >3000</text>
+    </g>
+    <g class="tick" transform="translate(0, 115.71)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >4000</text>
+    </g>
+    <g class="tick" transform="translate(0, 77.14)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >5000</text>
+    </g>
+    <g class="tick" transform="translate(0, 38.57)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >6000</text>
+    </g>
+    <g class="tick" transform="translate(0, 0)">
+      <line class="tick-line" x1="-6" y1="0" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+      <text class="tick-label" x="-9" y="0" text-anchor="end" dominant-baseline="central" >7000</text>
+    </g>
+  </g>
+</g>
+
+      <rect id="bar-0"
+            href="#row-0"
+            x="12.0"
+            y="114.17142857142855"
+            width="96.0"
+            height="155.82857142857145"
+            fill="#69b3a2"/>
+      <text id="label-0"
+            href="#row-0"
+            x="60.0"
+            y="109.17142857142855"
+            text-anchor="middle"
+            class="bar-label">
+        4040
+      </text>
+      <rect id="bar-1"
+            href="#row-1"
+            x="132.0"
+            y="20.67428571428573"
+            width="96.0"
+            height="249.32571428571427"
+            fill="#69b3a2"/>
+      <text id="label-1"
+            href="#row-1"
+            x="180.0"
+            y="15.67428571428573"
+            text-anchor="middle"
+            class="bar-label">
+        6464
+      </text>
+      <rect id="bar-2"
+            href="#row-2"
+            x="252.0"
+            y="96.58285714285716"
+            width="96.0"
+            height="173.41714285714284"
+            fill="#69b3a2"/>
+      <text id="label-2"
+            href="#row-2"
+            x="300.0"
+            y="91.58285714285716"
+            text-anchor="middle"
+            class="bar-label">
+        4496
+      </text>
+
+  </g>
+</svg>
